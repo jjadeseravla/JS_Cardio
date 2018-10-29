@@ -61,8 +61,22 @@ function seekAndDestroy(arr) { //console.log(arr) its just [2, 3, 4, 5, 5, 'hell
   }
   return arr.filter(filterArr); //filter only returns the true though each iteration
 }
+//orrrrrr:
 
-console.log(seekAndDestroy([2, 3, 4, 6, 6, 'hello'], 2, 6));
+function seekAndDestroy(arr) {
+  const array = arr.reduce(function(a, b){
+    return a.concat(b);
+  });
+
+  const ans = array.filter(function(value, index) { //On each iteration, we’ll use Array.indexOf() to see
+    //if our item already exists. If the returned index is smaller than the current index,
+    // that means an instance of item already exists. Otherwise, we’ll return it to add it to the new array.
+   return array.indexOf(value) >= index;
+  });
+  return ans;
+}
+
+//console.log(seekAndDestroy([2, 3, 4, 6, 6, 'hello'], 2, 6));
 
 // CHALLENGE 4: SORT BY HEIGHT
 // Some people are standing in a row in a park. There are trees between them which cannot be moved. Your task is to rearrange the people by their heights in a non-descending order without moving the trees.
@@ -70,7 +84,28 @@ console.log(seekAndDestroy([2, 3, 4, 6, 6, 'hello'], 2, 6));
 // a = [-1, 150, 190, 170, -1, -1, 160, 180]
 // sortByHeight(a) == [-1, 150, 160, 170, -1, -1, 180, 190]
 
-function sortByHeight() {}
+function sortByHeight(array) {
+  const arr1 = [];
+  const arr2 = [];
+array.forEach(function (val, i) {
+  if(val === -1) {
+    return arr1.push(i);
+  } else {
+    array.sort(function(a, b) {
+      a-b;
+    });
+    return arr2.push(val);
+  }
+});
+
+arr1.forEach(function(val, i) {
+  arr2.splice(arr1[i],0, -1);
+});
+return arr2;
+
+}
+
+console.log(sortByHeight([-1, 150, 160, 170, -1, -1, 180, 190]));
 
 // CHALLENGE 5: MISSING LETTERS
 // Find the missing letter in the passed letter range and return it. If all letters are present, return undefined
