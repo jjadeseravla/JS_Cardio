@@ -3,6 +3,9 @@
 // ex. reverseString('hello') === 'olleh'
 
 function reverseString(str) {
+  var string = str.split('').reverse().join('');
+
+  return string;
   // CONTRIBUTED SOLUTION
   // let arr = [...str];
   // let newArr = arr.map((_, i, arr) => {
@@ -26,6 +29,15 @@ function reverseString(str) {
 // ex. isPalindrome('racecar') === 'true', isPalindrome('hello') == false
 
 function isPalindrome(str) {
+
+  var revString = str.split('').reverse().join('');
+
+  if (revString === str) {
+    return true;
+  } else {
+    return false;
+  }
+
   // CONTRIBUTED SOLUTION
   //     let isPali = true;
   //     let caseStr = str.toLowerCase()
@@ -43,17 +55,64 @@ function isPalindrome(str) {
 // Return an integer in reverse
 // ex. reverseInt(521) === 125
 
-function reverseInt(int) {}
+function reverseInt(int) {
+
+  var str = int.toString();
+
+  var rev = str.split('').reverse().join('');
+
+  return parseInt(rev);
+  //var num = rev.parseInt()
+}
 
 // CHALLENGE 4: CAPITALIZE LETTERS
 // Return a string with the first letter of every word capitalized
 // ex. capitalizeLetters('i love javascript') === 'I Love Javascript'
-function capitalizeLetters(str) {}
+function capitalizeLetters(str) {
+  //var strArr = str.toLowerCase().split(' ');
+
+  // for (var i = 0; i < strArr.length; i++) {
+  //   strArr[i] = strArr[i].charAt(0).toUpperCase() + strArr[i].slice(1);
+  // }
+  //
+  // return strArr.join(' ');
+
+  return str.toLowerCase()
+              .split(' ')
+              .map(word => {
+    return word[0].toUpperCase() + word.slice(1);
+  })
+  .join(' ');
+}
 
 // CHALLENGE 5: MAX CHARACTER
 // Return the character that is most common in a string
 // ex. maxCharacter('javascript') == 'a'
 function maxCharacter(str) {
+
+  var charMap = {};
+  let maxNum = 0;
+  let maxChar = '';
+
+  str.split('')
+            .forEach(letter => {
+              if (charMap[letter]) {
+                charMap[letter]++;
+              } else {
+                charMap[letter] = 1 ;
+              }
+            });
+    for (let letter in charMap) {
+      if(charMap[letter] > maxNum) {
+        maxNum = charMap[letter];
+        maxChar = letter;
+      }
+    }
+    return maxChar;
+
+
+
+
   // CONTRIBUTED SOLUTION
   // Here is my version of the algorithm.
   // I put the string into an array and I sort it.
@@ -97,6 +156,18 @@ function maxCharacter(str) {
 // CHALLENGE 6: FIZZBUZZ
 // Write a program that prints all the numbers from 1 to 100. For multiples of 3, instead of the number, print "Fizz", for multiples of 5 print "Buzz". For numbers which are multiples of both 3 and 5, print "FizzBuzz".
 function fizzBuzz() {
+  for( let i = 1; i <= 100; i ++) {
+    if(i % 15 === 0) {
+      console.log('FizzBuzz');
+    } else if ( i % 3 === 0) {
+      console.log('Fizz');
+    } else if (i % 5 === 0) {
+      console.log('Buzz');
+    } else {
+      console.log(i);
+    }
+  }
+
   // CONTRIBUTED SOLUTION
   // for(let i = 1; i <= 100; i++) {
   //   let printNum=true;
@@ -146,7 +217,7 @@ function fizzBuzz() {
   //     (i % 5 === 0 ? 'Buzz' : ''),
   //   ].join('') || i);
   // }
-  
+
   // CONTRIBUTED SOLUTION
   // By Ashish S
   // for (let i = 1; i < 101; i++) {
@@ -156,6 +227,11 @@ function fizzBuzz() {
 }
 
 // Call Function
-const output = reverseString('hello');
+//const output = reverseString('hello');
+//const output = isPalindrome('hello');
+//const output = reverseInt(123);
+//const output = capitalizeLetters('i love javascript');
+//const output = maxCharacter('lollipop');
+const output = fizzBuzz(100);
 
 console.log(output);
