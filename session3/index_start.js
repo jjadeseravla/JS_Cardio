@@ -127,11 +127,21 @@ function missingLetters(letters) {
    return missing;
 }
 
-console.log(missingLetters('abce'));
+//console.log(missingLetters('abce'));
 
 // CHALLENGE 6: EVEN & ODD SUMS
 // Take in an array and return an array of the sums of even and odd numbers
 // ex.
 // evenOddSums([50, 60, 60, 45, 71]) == [170, 116]
 
-function evenOddSums() {}
+function evenOddSums(array) {
+  even = 0;
+  odd = 0;
+  arr = [];
+  array.forEach(function(num){
+    num % 2 == 0 ? even += num : odd += num;
+  })
+  return arr.concat(even, odd);
+}
+
+console.log(evenOddSums([50, 60, 60, 45, 71]));
