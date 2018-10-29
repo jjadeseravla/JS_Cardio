@@ -105,7 +105,7 @@ return arr2;
 
 }
 
-console.log(sortByHeight([-1, 150, 160, 170, -1, -1, 180, 190]));
+//console.log(sortByHeight([-1, 150, 160, 170, -1, -1, 180, 190]));
 
 // CHALLENGE 5: MISSING LETTERS
 // Find the missing letter in the passed letter range and return it. If all letters are present, return undefined
@@ -114,7 +114,20 @@ console.log(sortByHeight([-1, 150, 160, 170, -1, -1, 180, 190]));
 // missingLetters("abcdefghjklmno") == "i"
 // missingLetters("abcdefghijklmnopqrstuvwxyz") == undefined
 
-function missingLetters() {}
+function missingLetters(letters) {
+  let code = letters.charCodeAt(0);
+  let missing;
+   letters.split('').map(function(char, i) {
+     if(letters.charCodeAt(i) == code) {
+       ++code;
+     } else {
+       missing = String.fromCharCode(code);
+     }
+   });
+   return missing;
+}
+
+console.log(missingLetters('abce'));
 
 // CHALLENGE 6: EVEN & ODD SUMS
 // Take in an array and return an array of the sums of even and odd numbers
